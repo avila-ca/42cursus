@@ -1,0 +1,6 @@
+.*.*.*
+.*.*
+.DS_store
+src/ .DS_store
+src/main.c
+src/a.out
