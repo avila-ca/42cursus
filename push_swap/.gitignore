@@ -1,6 +1,10 @@
 .*.*.*
 .*.*
+checker_Mac
 .DS_store
 src/ .DS_store
 src/main.c
 src/a.out
+pyviz.py
+/push_swap_tester
+checker_Mac

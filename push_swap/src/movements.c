@@ -6,7 +6,7 @@
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:36:41 by avila-ca          #+#    #+#             */
-/*   Updated: 2022/12/12 11:35:51 by avila-ca         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:27:59 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	swap(t_lst **stack_a, t_lst **stack_b, char move)
 	}
 }
 
-void	rotate(t_lst **stack_a, t_lst **stack_b, char move)
+void	rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup)
 {
 	t_lst	*first;
 	t_lst	*stack;
@@ -58,16 +58,20 @@ void	rotate(t_lst **stack_a, t_lst **stack_b, char move)
 	if (move == 'a')
 	{
 		*stack_a = stack;
-		ft_putstr_fd("ra\n", 1);
+		if (!dup)
+			ft_putstr_fd("ra\n", 1);
 	}
-	else
+	else if (move == 'b')
 	{
 		*stack_b = stack;
-		ft_putstr_fd("rb\n", 1);
-	}
+		if (!dup)
+			ft_putstr_fd("rb\n", 1);
+		else
+			ft_putstr_fd("rr\n", 1);
+	} 
 }
 
-void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move)
+void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup)
 {
 	t_lst	*iter;
 	t_lst	*last;
@@ -87,12 +91,16 @@ void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move)
 	if (move == 'a')
 	{
 		*stack_a = stack;
-		ft_putstr_fd("rra\n", 1);
+		if (!dup)
+			ft_putstr_fd("rra\n", 1);
 	}
-	else
+	else if (move == 'b')
 	{
 		*stack_b = stack;
-		ft_putstr_fd("rrb\n", 1);
+		if (!dup)
+			ft_putstr_fd("rrb\n", 1);
+		else
+			ft_putstr_fd("rrr\n", 1);
 	}
 }
 

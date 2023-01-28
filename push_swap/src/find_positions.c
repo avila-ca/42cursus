@@ -6,35 +6,59 @@
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:37:58 by avila-ca          #+#    #+#             */
-/*   Updated: 2023/01/07 12:05:21 by avila-ca         ###   ########.fr       */
+/*   Updated: 2023/01/28 13:09:19 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	locate_tpos(t_lst **stack_a, t_lst **stack_b)
+void	locate_tpos(t_lst **stack_a, t_lst **stack_b, int a, int b)
 {
 	t_lst	*tempa;
 	t_lst	*tempb;
+	int		targeta;
+	int		targetb;
 	
 	tempa = *stack_a;
-	tempb = *stack_b;
+	if (stack_b)
+		tempb = *stack_b;
+	else
+		tempb = NULL;
+	targeta = 100;
+	targetb = 100;
 	while (tempb)
 	{
-		while ((*tempa).next != NULL)
+		while (tempa)
 		{
-			if ((*tempb).index > (*tempa).index
-				&& (*tempb).index < (*tempa).next->index)
-				(*tempb).tposition = (*tempa).next->position;
-			else if ((*tempb).index > max_index(stack_a)->index)
-				(*tempb).tposition = max_index(stack_a)->position + 1;
-			else if ((*tempb).index < min_index(stack_a)->index)
+			if ((*tempb).index < min_index(stack_a)->index)
 				(*tempb).tposition = min_index(stack_a)->position;
+			else if ((*tempb).index > max_index(stack_a)->index)
+				(*tempb).tposition =  min_index(stack_a)->position;
+			else if ((*tempa).index - (*tempb).index < targetb
+					&& (*tempa).index > (*tempb).index)
+			{
+//				printf("  A %d - B %d < targetb %d   == tempa.pos %d\n",(*tempa).index,(*tempb).index, targetb, (*tempa).position);
+				targetb = (*tempa).index - (*tempb).index;
+				(*tempb).tposition = (*tempa).position;
+			}
+			else if ((*tempb).index - (*tempa).index < targeta
+					&& (*tempb).index > (*tempa).index)
+			{
+//			printf("  B %d - A %d < targeta %d   == tempa.pos %d\n",(*tempb).index,(*tempa).index, targeta, (*tempa).position); 
+				targeta = (*tempb).index - (*tempa).index;
+				if ((*tempa).position + 1 < (*tempa).total_node_a)
+					(*tempb).tposition = (*tempa).position + 1;
+				else
+					(*tempb).tposition = 0;
+			}
+
 			tempa = (*tempa).next;
 		}
 		if ((*tempb).tposition == -1)
 			(*tempb).tposition = 0;
 		tempa = *stack_a;
+		(*tempb).total_node_b = b;
+		(*tempb).total_node_a = a;
 		tempb = (*tempb).next;
 	}
 }
@@ -123,22 +147,25 @@ void	find_position(t_lst **stack_a, t_lst **stack_b)
 {
 	t_lst	*tempa;
 	t_lst	*tempb;
-	int i;
+	int		a;
+	int		b;
 
-	i = 0;
+	a = 0;
+	b = 0;
 	tempa = *stack_a;
-	tempb = *stack_b;
+	if (stack_b)
+		tempb = *stack_b;
 	while (tempa)
 	{
-		(*tempa).position = i;
+		(*tempa).position = a;
 		tempa = (*tempa).next;
-		i++;
+		a++;
 	}
-	i = 0;
 	while (tempb)
 	{
-		(*tempb).position = i;
+		(*tempb).position = b;
 		tempb = (*tempb).next;
-		i++;
+		b++;
 	}
+	locate_tpos(stack_a, stack_b, a + 1, b);
 }

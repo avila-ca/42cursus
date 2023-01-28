@@ -6,7 +6,7 @@
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:47:43 by avila-ca          #+#    #+#             */
-/*   Updated: 2023/01/07 10:39:50 by avila-ca         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:23:11 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int	check_no_num(int argc, char **argv)
 				i++;
 			else
 			{
-					printf(" el nummero %c", argv[num][i]); 
-					write(2, "ppError\n", 8);
+					write(2, "Error\n", 6);
 					return (1);
 			}
 		}

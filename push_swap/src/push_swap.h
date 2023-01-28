@@ -6,7 +6,7 @@
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:55 by avila-ca          #+#    #+#             */
-/*   Updated: 2023/01/07 12:01:10 by avila-ca         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:02:00 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ typedef struct s_lst
 	int		tposition;
 	int		cost_a;
 	int		cost_b;
-	int		total_node;
+	int		total_cost;
+	int		total_node_b;
+	int		total_node_a;
 	struct s_lst	*next;
 }	t_lst;
 
@@ -40,8 +42,8 @@ int		check_no_num(int argc, char **argv);
 void	indexer(t_lst *stack_a);
 void	lst_add_front(t_lst *lst, t_lst *new);
 void	swap(t_lst **stack_a, t_lst **stack_b, char move);
-void	rotate(t_lst **stack_a, t_lst **stack_b, char move);
-void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move);
+void	rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup);
+void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup);
 void	push(t_lst **stack_a, t_lst **stack_b, char move);
 int		node_count(t_lst **stack);
 void	two_nums(t_lst **stack_a);
@@ -57,6 +59,9 @@ int		is_sorted(t_lst **stack_a);
 void	init_values(t_lst **stack_a, t_lst **stack_b);
 void	init_values(t_lst **stack_a, t_lst **stack_b);
 void	printer(t_lst **stack_a, t_lst **stack_b);
-void	locate_tpos(t_lst **stack_a, t_lst **stack_b);
+void	locate_tpos(t_lst **stack_a, t_lst **stack_b, int a, int b);
+void	sort_mid(t_lst **stack_a, t_lst **stack_b);
+void	sort_first(t_lst **stack_a, t_lst **stack_b);
+
 
 #endif

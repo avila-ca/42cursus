@@ -6,7 +6,7 @@
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:23:31 by avila-ca          #+#    #+#             */
-/*   Updated: 2023/01/07 09:58:17 by avila-ca         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:37:59 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	main(int argc, char **argv)
 		if (!stack_a)
 			stack_a = lstnew(atoi_push(argv[i]));
 		else
+		{
 			lst_add_back(stack_a, lstnew(atoi_push(argv[i])));
+		}
 	}
 	indexer(stack_a);
 	i = node_count(&stack_a);
@@ -40,7 +42,7 @@ int	main(int argc, char **argv)
 		three_nums(&stack_a);
 	else
 		over_three(&stack_a, &stack_b);
-		//printer(&stack_a, &stack_b);
+	//	printer(&stack_a, &stack_b);
 	return (0);
 }
 // python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
