@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorter.c                                           :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 09:07:45 by avila-ca          #+#    #+#             */
-/*   Updated: 2023/03/22 10:17:21 by avila-ca         ###   ########.fr       */
+/*   Created: 2023/02/27 09:37:34 by avila-ca          #+#    #+#             */
+/*   Updated: 2023/03/01 09:01:46 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_lst **stack_a)
+void	ra(t_lst **stack_a)
 {
-	t_lst	*aux;
-	t_lst	*aux2;
+	rotate(stack_a, NULL, 'a');
+	ft_putstr_fd("ra\n", 1);
+}
 
-	aux = *stack_a;
-	aux2 = *stack_a;
-	while ((*aux).next != NULL)
-	{
-		aux = (*aux).next;
-		if ((*aux2).index < (*aux).index)
-			aux2 = (*aux2).next;
-		else
-			return (0);
-	}
-	return (1);
+void	rb(t_lst **stack_b)
+{
+	rotate(NULL, stack_b, 'b');
+	ft_putstr_fd("rb\n", 1);
+}
+
+void	rra(t_lst **stack_a)
+{
+	reverse_rotate(stack_a, NULL, 'a');
+	ft_putstr_fd("rra\n", 1);
+}
+
+void	rrb(t_lst **stack_b)
+{
+	reverse_rotate(NULL, stack_b, 'b');
+	ft_putstr_fd("rrb\n", 1);
 }

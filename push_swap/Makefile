@@ -7,7 +7,10 @@ SRC = src/push_swap.c\
 	  src/find_positions.c\
 	  src/costs.c\
 	  src/sorter.c\
-
+	  src/move.c\
+	  src/double_move.c\
+	  src/indexer.c\
+	
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
 

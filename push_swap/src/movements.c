@@ -1,28 +1,25 @@
-///* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_a.c                                           :+:      :+:    :+:   */
+/*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 12:36:41 by avila-ca          #+#    #+#             */
-/*   Updated: 2023/01/16 11:27:59 by avila-ca         ###   ########.fr       */
+/*   Created: 2023/03/12 12:17:54 by avila-ca          #+#    #+#             */
+/*   Updated: 2023/03/22 10:14:45 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_lst **stack_a, t_lst **stack_b, char move)
+void	swap(t_lst **stack_a)
 {
 	t_lst	*aux3;
 	t_lst	*aux2;
 	t_lst	*aux1;
 	t_lst	*stack;
 
-	if (move == 'a')
 		stack = *stack_a;
-	else
-		stack = *stack_b;
 	aux3 = stack;
 	aux2 = stack;
 	aux1 = stack;
@@ -30,19 +27,11 @@ void	swap(t_lst **stack_a, t_lst **stack_b, char move)
 	stack = (*aux2).next;
 	(*stack).next = aux1;
 	(*stack).next->next = aux3;
-	if (move == 'a')
-	{
-		*stack_a = stack;
-		ft_putstr_fd("sa\n", 1);
-	}
-	else
-	{
-		*stack_b = stack;
-		ft_putstr_fd("sb\n", 1);
-	}
+	*stack_a = stack;
+	ft_putstr_fd("sa\n", 1);
 }
 
-void	rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup)
+void	rotate(t_lst **stack_a, t_lst **stack_b, char move)
 {
 	t_lst	*first;
 	t_lst	*stack;
@@ -56,22 +45,12 @@ void	rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup)
 	(*first).next = NULL;
 	lst_add_back(stack, first);
 	if (move == 'a')
-	{
 		*stack_a = stack;
-		if (!dup)
-			ft_putstr_fd("ra\n", 1);
-	}
 	else if (move == 'b')
-	{
 		*stack_b = stack;
-		if (!dup)
-			ft_putstr_fd("rb\n", 1);
-		else
-			ft_putstr_fd("rr\n", 1);
-	} 
 }
 
-void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup)
+void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move)
 {
 	t_lst	*iter;
 	t_lst	*last;
@@ -89,19 +68,9 @@ void	reverse_rotate(t_lst **stack_a, t_lst **stack_b, char move, int dup)
 	stack = last;
 	(*iter).next = NULL;
 	if (move == 'a')
-	{
 		*stack_a = stack;
-		if (!dup)
-			ft_putstr_fd("rra\n", 1);
-	}
 	else if (move == 'b')
-	{
 		*stack_b = stack;
-		if (!dup)
-			ft_putstr_fd("rrb\n", 1);
-		else
-			ft_putstr_fd("rrr\n", 1);
-	}
 }
 
 void	push(t_lst **stack_a, t_lst **stack_b, char move)
@@ -110,7 +79,6 @@ void	push(t_lst **stack_a, t_lst **stack_b, char move)
 
 	if (move == 'a')
 	{
-
 		temp = *stack_b;
 		*stack_b = (*stack_b)->next;
 		(*temp).next = *stack_a;

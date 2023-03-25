@@ -6,7 +6,7 @@
 /*   By: avila-ca <avila-ca@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:41:34 by avila-ca          #+#    #+#             */
-/*   Updated: 2022/12/12 11:35:47 by avila-ca         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:14:17 by avila-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_lst	*lstnew(int num)
 
 t_lst	*lst_last(t_lst *lst)
 {
-	if(!lst)
+	if (!lst)
 		return (0);
 	while ((*lst).next != NULL)
 		lst = (*lst).next;
@@ -41,7 +41,7 @@ t_lst	*lst_last(t_lst *lst)
 void	lst_add_back(t_lst *lst, t_lst *new)
 {
 	t_lst	*temp;
-	
+
 	if (!lst)
 		lst = new;
 	else
@@ -72,5 +72,3 @@ void	lst_add_front(t_lst *head, t_lst *new)
 		head = new;
 	}
 }
-
-
